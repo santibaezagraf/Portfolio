@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Santiago Baeza Graf — Full Stack Developer</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-label"></div>
+
+<!-- progress dots -->
+<nav class="progress" aria-hidden="true">
+  <a href="#hero"></a>
+  <a href="#about"></a>
+  <a href="#stack"></a>
+  <a href="#work"></a>
+  <a href="#edu"></a>
+  <a href="#interests"></a>
+  <a href="#contact"></a>
+</nav>
+
+<!-- NAV -->
+<header class="nav">
+  <a href="#hero" class="brand">SBG©</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav.about">Perfil</a>
+      <a href="#stack" data-i18n="nav.stack">Stack</a>
+      <a href="#work" data-i18n="nav.work">Proyectos</a>
+      <a href="#edu" data-i18n="nav.edu">Formación</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="es" class="active">ES</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <button class="motion-toggle" id="motionToggle" aria-pressed="true" title="Animaciones">
+      <span class="motion-ind"></span>
+      <span class="motion-txt"><span class="on" data-i18n="nav.motionOn">Motion</span><span class="off" data-i18n="nav.motionOff">Static</span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="hero-glow g3"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-eyebrow">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Full Stack Developer · Mar del Plata, AR</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="line"><span class="word">Santiago</span></span>
+      <span class="line"><span class="word">Baeza</span> <em><span class="word">Graf</span></em></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-lede line-reveal"><span data-i18n="hero.lede">Construyo <strong>sistemas de gestión a medida</strong> — del esquema de base de datos a la última animación.</span></p>
+      <div class="scroll-cue">
+        <span class="bar"></span>
+        <span data-i18n="hero.scroll">Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">React</span><span class="ticker-item">Next.js</span><span class="ticker-item">TypeScript</span><span class="ticker-item">PostgreSQL</span><span class="ticker-item">Supabase</span><span class="ticker-item">Node.js</span><span class="ticker-item">.NET</span><span class="ticker-item">Python</span>
+    <span class="ticker-item">React</span><span class="ticker-item">Next.js</span><span class="ticker-item">TypeScript</span><span class="ticker-item">PostgreSQL</span><span class="ticker-item">Supabase</span><span class="ticker-item">Node.js</span><span class="ticker-item">.NET</span><span class="ticker-item">Python</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal about-left">
+      <span class="eyebrow" data-i18n="about.eyebrow">Perfil</span>
+      <div class="portrait-frame">
+        <image-slot id="about-portrait" shape="circle" placeholder="Tu retrato"></image-slot>
+        <span class="portrait-ring" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div>
+      <p class="about-statement reveal" data-i18n="about.statement">Estudiante de 4.º año de Ingeniería en Sistemas con <em>todas las materias promocionadas</em>.</p>
+      <div class="about-meta" style="margin-top: clamp(40px, 6vh, 70px);">
+        <div class="meta-row reveal reveal-d1"><span class="k" data-i18n="about.k1">Rol</span><span class="v" data-i18n="about.v1">Desarrollador Full Stack — Freelance</span></div>
+        <div class="meta-row reveal reveal-d2"><span class="k" data-i18n="about.k2">Formación</span><span class="v" data-i18n="about.v2">Ingeniería en Sistemas · UAP (2023–2027)</span></div>
+        <div class="meta-row reveal reveal-d3"><span class="k" data-i18n="about.k3">Base</span><span class="v" data-i18n="about.v3">Mar del Plata, Argentina · Disponible remoto</span></div>
+        <div class="meta-row reveal reveal-d4">
+          <span class="k" data-i18n="about.k4">Idiomas</span>
+          <div class="about-langs">
+            <div class="lang"><strong>Español</strong><span data-i18n="about.lang1sub">Nativo</span></div>
+            <div class="lang"><strong>English</strong><span data-i18n="about.lang2sub">Avanzado C1</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack section-pad dark" id="stack">
+  <div class="wrap">
+    <div class="stack-head">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="stack.eyebrow">Habilidades</span>
+        <h2 class="section-title line-reveal" style="margin-top:18px;"><span data-i18n="stack.title">El stack</span></h2>
+      </div>
+      <p class="reveal reveal-d1" data-i18n="stack.lede">Tecnologías con las que diseño, construyo y despliego producto de punta a punta.</p>
+    </div>
+    <div class="stack-groups">
+      <div class="stack-group reveal">
+        <div class="gtitle"><span class="n">01</span><span data-i18n="stack.g1">Frontend</span></div>
+        <div class="tag-row">
+          <span class="tag" data-magnetic="0.3">React</span>
+          <span class="tag" data-magnetic="0.3">Next.js</span>
+          <span class="tag" data-magnetic="0.3">Tailwind CSS</span>
+          <span class="tag" data-magnetic="0.3">TypeScript</span>
+          <span class="tag" data-magnetic="0.3">JavaScript</span>
+        </div>
+      </div>
+      <div class="stack-group reveal">
+        <div class="gtitle"><span class="n">02</span><span data-i18n="stack.g2">Backend & Datos</span></div>
+        <div class="tag-row">
+          <span class="tag" data-magnetic="0.3">PostgreSQL</span>
+          <span class="tag" data-magnetic="0.3">Supabase</span>
+          <span class="tag" data-magnetic="0.3">Node.js</span>
+          <span class="tag" data-magnetic="0.3">.NET</span>
+          <span class="tag" data-magnetic="0.3">C#</span>
+          <span class="tag" data-magnetic="0.3">Python</span>
+        </div>
+      </div>
+      <div class="stack-group reveal">
+        <div class="gtitle"><span class="n">03</span><span data-i18n="stack.g3">Herramientas</span></div>
+        <div class="tag-row">
+          <span class="tag" data-magnetic="0.3">Docker</span>
+          <span class="tag" data-magnetic="0.3">Linux · Debian</span>
+          <span class="tag" data-magnetic="0.3">Git</span>
+          <span class="tag" data-magnetic="0.3">GitHub</span>
+          <span class="tag" data-magnetic="0.3">Postman</span>
+          <span class="tag" data-magnetic="0.3">Vercel</span>
+        </div>
+      </div>
+      <div class="stack-group reveal">
+        <div class="gtitle"><span class="n">04</span><span data-i18n="stack.g4">Soft skills</span></div>
+        <p class="soft-text" data-i18n="stack.soft">Resolución de problemas complejos, capacidad de abstracción, disciplina y atención al detalle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="projects section-pad" id="work">
+  <div class="wrap">
+    <div class="projects-head">
+      <span class="eyebrow reveal" data-i18n="work.eyebrow">Proyectos seleccionados</span>
+      <h2 class="section-title line-reveal" style="margin-top:18px;"><span data-i18n="work.title">Trabajo reciente</span></h2>
+      <p class="reveal reveal-d1" style="max-width:48ch;margin-top:24px;color:var(--ink-soft);line-height:1.6;font-size:1.1rem;" data-i18n="work.lede">Dos sistemas en producción, construidos de cero.</p>
+    </div>
+
+    <!-- Project 1: Fisiopasteur -->
+    <article class="project">
+      <div class="project-info reveal">
+        <div class="project-index"><span>(01)</span><span data-i18n="p1.role">Sistema de gestión clínica</span></div>
+        <h3 class="project-title">Fisiopasteur</h3>
+        <div class="project-loc" data-i18n="p1.loc">Libertador San Martín, AR · 07/2025 — presente</div>
+        <p class="project-desc" data-i18n="p1.desc">Sistema web para la gestión de especialistas, pacientes, turnos e historiales.</p>
+        <div class="feat-list">
+          <div class="feat"><span class="fnum">01</span><span class="ftxt"><b data-i18n="p1.f1b">Arquitectura BaaS robusta</b><span data-i18n="p1.f1s">Supabase (PostgreSQL) + Supabase SSR.</span></span></div>
+          <div class="feat"><span class="fnum">02</span><span class="ftxt"><b data-i18n="p1.f2b">Seguridad a nivel de fila (RLS)</b><span data-i18n="p1.f2s">Privacidad estricta de datos médicos.</span></span></div>
+          <div class="feat"><span class="fnum">03</span><span class="ftxt"><b data-i18n="p1.f3b">Estado avanzado y optimización</b><span data-i18n="p1.f3s">TanStack React Query + Zustand.</span></span></div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Next.js</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">RLS</span><span class="chip">React Query</span><span class="chip">Zustand</span><span class="chip">WhatsApp API</span>
+        </div>
+      </div>
+      <div class="project-media reveal reveal-d1">
+        <div>
+          <image-slot id="p1-main" style="aspect-ratio:16/10;" shape="rounded" radius="14" placeholder="Captura principal — calendario de turnos"></image-slot>
+          <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap1">Calendario / agenda de turnos</div>
+        </div>
+        <div class="media-2">
+          <div>
+            <image-slot id="p1-b" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Ficha de paciente"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap2">Ficha de paciente</div>
+          </div>
+          <div>
+            <image-slot id="p1-c" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Vista mobile"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap3">Vista mobile</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2: WAGY -->
+    <article class="project">
+      <div class="project-info reveal">
+        <div class="project-index"><span>(02)</span><span data-i18n="p2.role">Gestión de pedidos & analítica</span></div>
+        <h3 class="project-title">WAGY Helados</h3>
+        <div class="project-loc" data-i18n="p2.loc">Concepción del Uruguay, AR · 07/2025 — presente</div>
+        <p class="project-desc" data-i18n="p2.desc">Sistema web de gestión de pedidos, balances y entregas a domicilio.</p>
+        <div class="feat-list">
+          <div class="feat"><span class="fnum">01</span><span class="ftxt"><b data-i18n="p2.f1b">CRUD de pedidos y logística</b><span data-i18n="p2.f1s">Seguimiento en tiempo real, pagos y stock.</span></span></div>
+          <div class="feat"><span class="fnum">02</span><span class="ftxt"><b data-i18n="p2.f2b">Analítica financiera avanzada</b><span data-i18n="p2.f2s">RPCs en PostgreSQL con CTEs.</span></span></div>
+          <div class="feat"><span class="fnum">03</span><span class="ftxt"><b data-i18n="p2.f3b">Lógica de negocio en la base</b><span data-i18n="p2.f3s">Ingresos, flujo de caja, costos y gastos.</span></span></div>
+          <div class="feat"><span class="fnum">04</span><span class="ftxt"><b data-i18n="p2.f4b">Arquitectura segura</b><span data-i18n="p2.f4s">Next.js Server Actions + Zod.</span></span></div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Next.js</span><span class="chip">Server Actions</span><span class="chip">Zod</span><span class="chip">PostgreSQL</span><span class="chip">CTEs / RPCs</span><span class="chip">Supabase</span>
+        </div>
+      </div>
+      <div class="project-media reveal reveal-d1">
+        <div>
+          <image-slot id="p2-main" style="aspect-ratio:16/10;" shape="rounded" radius="14" placeholder="Panel de pedidos en tiempo real"></image-slot>
+          <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap1">Panel de pedidos</div>
+        </div>
+        <div class="media-2">
+          <div>
+            <image-slot id="p2-b" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Balance financiero"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap2">Balance financiero</div>
+          </div>
+          <div>
+            <image-slot id="p2-c" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Detalle de gastos"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap3">Detalle de gastos</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu section-pad dark" id="edu">
+  <div class="wrap">
+    <div class="edu-head">
+      <span class="eyebrow reveal" data-i18n="edu.eyebrow">Trayectoria académica</span>
+      <h2 class="section-title line-reveal" style="margin-top:18px;"><span data-i18n="edu.title">Formación</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <span class="tl-year">2023 — 2027</span>
+        <div>
+          <div class="tl-name" data-i18n="edu.e1n">Ingeniería en Sistemas</div>
+          <div class="tl-sub" data-i18n="edu.e1s">Cursando 4.º año — todas las materias promocionadas.</div>
+        </div>
+        <span class="tl-place" data-i18n="edu.e1p">Universidad Adventista del Plata</span>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-year">2020 — 2023</span>
+        <div>
+          <div class="tl-name" data-i18n="edu.e2n">Colegio Secundario</div>
+          <div class="tl-sub" data-i18n="edu.e2s">Educación secundaria.</div>
+        </div>
+        <span class="tl-place" data-i18n="edu.e2p">Instituto Adventista Balcarce</span>
+      </div>
+      <div class="tl-item reveal">
+        <span class="tl-year">2011 — 2019</span>
+        <div>
+          <div class="tl-name" data-i18n="edu.e3n">Primario y Secundario</div>
+          <div class="tl-sub" data-i18n="edu.e3s">Formación primaria y parte de la secundaria.</div>
+        </div>
+        <span class="tl-place" data-i18n="edu.e3p">Holy Mary of Northern Hills</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section class="interests section-pad" id="interests">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="int.eyebrow">Fuera del código</span>
+    <h2 class="section-title line-reveal" style="margin-top:18px;"><span data-i18n="int.title">Intereses</span></h2>
+    <div class="int-grid">
+      <div class="int-card reveal">
+        <span class="int-glyph">♪</span>
+        <div class="int-num">(01)</div>
+        <div class="int-name" data-i18n="int.i1n">Guitarra <em>clásica</em></div>
+        <p class="int-desc" data-i18n="int.i1d">La práctica diaria que enseña paciencia, estructura y el valor de cada detalle.</p>
+      </div>
+      <div class="int-card reveal reveal-d1">
+        <span class="int-glyph">𝄞</span>
+        <div class="int-num">(02)</div>
+        <div class="int-name" data-i18n="int.i2n">Música</div>
+        <p class="int-desc" data-i18n="int.i2d">Escuchar y entender composición — ritmo y armonía como modelo mental del software.</p>
+      </div>
+      <div class="int-card reveal reveal-d2">
+        <span class="int-glyph">§</span>
+        <div class="int-num">(03)</div>
+        <div class="int-name" data-i18n="int.i3n">Literatura y arte <em>clásicos</em></div>
+        <p class="int-desc" data-i18n="int.i3d">Leer es el combustible de la creatividad y la disciplina que vuelco en el desarrollo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad dark" id="contact">
+  <div class="contact-glow"></div>
+  <div class="wrap contact-inner">
+    <span class="eyebrow" data-i18n="contact.eyebrow">Hablemos</span>
+    <h2 class="contact-big" data-i18n="contact.big">Hagamos algo <em>juntos</em></h2>
+    <a href="mailto:santibaezagraf@gmail.com" class="contact-email" data-magnetic="0.25" data-cursor-label="Email">santibaezagraf@gmail.com</a>
+    <div class="contact-links">
+      <a class="clink" href="mailto:santibaezagraf@gmail.com"><span class="dot"></span>Email</a>
+      <a class="clink" href="tel:+542236730539"><span class="dot"></span>+54 223 673-0539</a>
+      <a class="clink" href="https://github.com/santibaezagraf" target="_blank" rel="noopener"><span class="dot"></span>GitHub</a>
+      <a class="clink" href="https://www.linkedin.com/in/santiago-baeza-graf-1b22a3383/" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+    </div>
+    <div class="contact-foot">
+      <span>Santiago Baeza Graf</span>
+      <span data-i18n="contact.role">Desarrollador Full Stack</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</section>
+
+<script src="image-slot.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
