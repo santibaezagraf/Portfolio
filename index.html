@@ -8,10 +8,28 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
 <div class="grain"></div>
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 <div class="cursor-label"></div>
+
+<!-- Persistent vertical watermark — appears once hero leaves the viewport -->
+<div class="watermark" aria-hidden="true">Santiago Baeza Graf<span class="wm-dot"></span>Full Stack Developer</div>
+
+<!-- Keyboard shortcuts hint (toggled with ?) -->
+<div class="kbd-hint" id="kbdHint" role="dialog" aria-hidden="true" aria-label="Atajos de teclado">
+  <div class="kbd-card">
+    <div class="kbd-title" data-i18n="kbd.title">Atajos</div>
+    <div class="kbd-row"><kbd>J</kbd><kbd>↓</kbd><span data-i18n="kbd.next">Siguiente sección</span></div>
+    <div class="kbd-row"><kbd>K</kbd><kbd>↑</kbd><span data-i18n="kbd.prev">Sección anterior</span></div>
+    <div class="kbd-row"><kbd>G</kbd><span data-i18n="kbd.top">Volver al inicio</span></div>
+    <div class="kbd-row"><kbd>L</kbd><span data-i18n="kbd.lang">Cambiar idioma</span></div>
+    <div class="kbd-row"><kbd>M</kbd><span data-i18n="kbd.motion">Toggle motion</span></div>
+    <div class="kbd-row"><kbd>?</kbd><span data-i18n="kbd.close">Mostrar / ocultar este panel</span></div>
+  </div>
+</div>
 
 <!-- progress dots -->
 <nav class="progress" aria-hidden="true">
@@ -39,6 +57,10 @@
       <button data-lang="es" class="active">ES</button>
       <button data-lang="en">EN</button>
     </div>
+    <a class="cv-link" href="cv-santiago-baeza-graf.pdf" target="_blank" rel="noopener" download data-cursor-label="PDF">
+      <span data-i18n="nav.cv">CV</span>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 8 L8 2 M8 2 H3.5 M8 2 V6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+    </a>
     <button class="motion-toggle" id="motionToggle" aria-pressed="true" title="Animaciones">
       <span class="motion-ind"></span>
       <span class="motion-txt"><span class="on" data-i18n="nav.motionOn">Motion</span><span class="off" data-i18n="nav.motionOff">Static</span></span>
@@ -47,6 +69,7 @@
 </header>
 
 <!-- HERO -->
+<main id="main">
 <section class="hero" id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-glow g1"></div>
@@ -80,11 +103,12 @@
 
 <!-- ABOUT -->
 <section class="about section-pad" id="about">
+  <div class="sec-glow"></div>
   <div class="wrap about-grid">
     <div class="reveal about-left">
       <span class="eyebrow" data-i18n="about.eyebrow">Perfil</span>
       <div class="portrait-frame">
-        <image-slot id="about-portrait" shape="circle" placeholder="Tu retrato"></image-slot>
+        <img src="images/portrait.webp" alt="Santiago Baeza Graf" class="portrait-img" />
         <span class="portrait-ring" aria-hidden="true"></span>
       </div>
     </div>
@@ -108,6 +132,7 @@
 
 <!-- STACK -->
 <section class="stack section-pad dark" id="stack">
+  <div class="sec-glow"></div>
   <div class="wrap">
     <div class="stack-head">
       <div class="reveal">
@@ -159,6 +184,7 @@
 
 <!-- WORK -->
 <section class="projects section-pad" id="work">
+  <div class="sec-glow"></div>
   <div class="wrap">
     <div class="projects-head">
       <span class="eyebrow reveal" data-i18n="work.eyebrow">Proyectos seleccionados</span>
@@ -167,8 +193,9 @@
     </div>
 
     <!-- Project 1: Fisiopasteur -->
-    <article class="project">
+    <article class="project" data-accent="burgundy">
       <div class="project-info reveal">
+        <span class="project-bignum" aria-hidden="true">01</span>
         <div class="project-index"><span>(01)</span><span data-i18n="p1.role">Sistema de gestión clínica</span></div>
         <h3 class="project-title">Fisiopasteur</h3>
         <div class="project-loc" data-i18n="p1.loc">Libertador San Martín, AR · 07/2025 — presente</div>
@@ -179,30 +206,35 @@
           <div class="feat"><span class="fnum">03</span><span class="ftxt"><b data-i18n="p1.f3b">Estado avanzado y optimización</b><span data-i18n="p1.f3s">TanStack React Query + Zustand.</span></span></div>
         </div>
         <div class="chip-row">
-          <span class="chip">Next.js</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">RLS</span><span class="chip">React Query</span><span class="chip">Zustand</span><span class="chip">WhatsApp API</span>
+          <span class="chip" data-tooltip="Framework de React con SSR, rutas por archivo y Server Components.">Next.js</span><span class="chip" data-tooltip="Plataforma BaaS sobre PostgreSQL: base de datos, auth, almacenamiento y APIs autogeneradas.">Supabase</span><span class="chip" data-tooltip="Base de datos relacional con tipado fuerte, transacciones ACID y funciones SQL avanzadas.">PostgreSQL</span><span class="chip" data-tooltip="Row-Level Security — políticas a nivel de fila para aislar datos por usuario directamente en la base.">RLS</span><span class="chip" data-tooltip="TanStack Query: capa de fetching, caché y sincronización de estado del servidor en React.">React Query</span><span class="chip" data-tooltip="Store de estado global mínimo, sin boilerplate, basado en hooks.">Zustand</span><span class="chip" data-tooltip="WhatsApp Business API — mensajería transaccional automatizada para recordatorios y avisos.">WhatsApp API</span>
         </div>
       </div>
       <div class="project-media reveal reveal-d1">
         <div>
-          <image-slot id="p1-main" style="aspect-ratio:16/10;" shape="rounded" radius="14" placeholder="Captura principal — calendario de turnos"></image-slot>
-          <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap1">Calendario / agenda de turnos</div>
+          <image-slot id="p1-main" src="images/fisiopasteur/calendario.webp" data-cursor-label="VIEW" style="aspect-ratio:1918/908;" fit="contain" shape="rounded" radius="14" placeholder="Calendario de turnos"></image-slot>
+          <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap1">Calendario de turnos</div>
+        </div>
+        <div>
+          <image-slot id="p1-turnos" src="images/fisiopasteur/turnos.webp" data-cursor-label="VIEW" style="aspect-ratio:1915/913;" fit="contain" shape="rounded" radius="14" placeholder="Listado de turnos"></image-slot>
+          <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap4">Listado y filtros de turnos</div>
         </div>
         <div class="media-2">
           <div>
-            <image-slot id="p1-b" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Ficha de paciente"></image-slot>
-            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap2">Ficha de paciente</div>
+            <image-slot id="p1-b" src="images/fisiopasteur/inicio.webp" data-cursor-label="VIEW" style="aspect-ratio:971/909;" fit="contain" shape="rounded" radius="14" placeholder="Panel de control"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap2">Panel de control con métricas</div>
           </div>
           <div>
-            <image-slot id="p1-c" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Vista mobile"></image-slot>
-            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap3">Vista mobile</div>
+            <image-slot id="p1-c" src="images/fisiopasteur/pilates-mobile.webp" data-cursor-label="VIEW" style="aspect-ratio:522/910;" fit="contain" shape="rounded" radius="14" placeholder="Agenda de pilates — mobile"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p1.cap3">Agenda de pilates — mobile</div>
           </div>
         </div>
       </div>
     </article>
 
     <!-- Project 2: WAGY -->
-    <article class="project">
+    <article class="project" data-accent="cyan">
       <div class="project-info reveal">
+        <span class="project-bignum" aria-hidden="true">02</span>
         <div class="project-index"><span>(02)</span><span data-i18n="p2.role">Gestión de pedidos & analítica</span></div>
         <h3 class="project-title">WAGY Helados</h3>
         <div class="project-loc" data-i18n="p2.loc">Concepción del Uruguay, AR · 07/2025 — presente</div>
@@ -214,22 +246,26 @@
           <div class="feat"><span class="fnum">04</span><span class="ftxt"><b data-i18n="p2.f4b">Arquitectura segura</b><span data-i18n="p2.f4s">Next.js Server Actions + Zod.</span></span></div>
         </div>
         <div class="chip-row">
-          <span class="chip">Next.js</span><span class="chip">Server Actions</span><span class="chip">Zod</span><span class="chip">PostgreSQL</span><span class="chip">CTEs / RPCs</span><span class="chip">Supabase</span>
+          <span class="chip" data-tooltip="Framework de React con SSR, rutas por archivo y Server Components.">Next.js</span><span class="chip" data-tooltip="Funciones que corren en el servidor invocadas desde el cliente — mutaciones sin escribir endpoints REST.">Server Actions</span><span class="chip" data-tooltip="Librería de validación y parseo con tipos de TypeScript inferidos automáticamente.">Zod</span><span class="chip" data-tooltip="Base de datos relacional con tipado fuerte, transacciones ACID y funciones SQL avanzadas.">PostgreSQL</span><span class="chip" data-tooltip="Common Table Expressions + Remote Procedure Calls — consultas SQL complejas reutilizables ejecutadas en la base.">CTEs / RPCs</span><span class="chip" data-tooltip="Plataforma BaaS sobre PostgreSQL: base de datos, auth, almacenamiento y APIs autogeneradas.">Supabase</span>
         </div>
       </div>
       <div class="project-media reveal reveal-d1">
         <div>
-          <image-slot id="p2-main" style="aspect-ratio:16/10;" shape="rounded" radius="14" placeholder="Panel de pedidos en tiempo real"></image-slot>
+          <image-slot id="p2-main" src="images/wagy/pedidos-table.webp" data-cursor-label="VIEW" style="aspect-ratio:1916/910;" fit="contain" shape="rounded" radius="14" placeholder="Panel de pedidos en tiempo real"></image-slot>
           <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap1">Panel de pedidos</div>
+        </div>
+        <div>
+          <image-slot id="p2-balance" src="images/wagy/balance.webp" data-cursor-label="VIEW" style="aspect-ratio:1918/901;" fit="contain" shape="rounded" radius="14" placeholder="Balance de ventas"></image-slot>
+          <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap2">Balance de ventas</div>
         </div>
         <div class="media-2">
           <div>
-            <image-slot id="p2-b" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Balance financiero"></image-slot>
-            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap2">Balance financiero</div>
+            <image-slot id="p2-b" src="images/wagy/mobile-cantidades.webp" data-cursor-label="VIEW" style="aspect-ratio:482/794;" fit="contain" shape="rounded" radius="14" placeholder="Cantidades (mobile)"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap3">Cantidades — mobile</div>
           </div>
           <div>
-            <image-slot id="p2-c" style="aspect-ratio:4/5;" shape="rounded" radius="14" placeholder="Detalle de gastos"></image-slot>
-            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap3">Detalle de gastos</div>
+            <image-slot id="p2-c" src="images/wagy/mobile-detalles.webp" data-cursor-label="VIEW" style="aspect-ratio:478/819;" fit="contain" shape="rounded" radius="14" placeholder="Detalle del pedido (mobile)"></image-slot>
+            <div class="media-caption" style="margin-top:8px;" data-i18n="p2.cap4">Detalle del pedido — mobile</div>
           </div>
         </div>
       </div>
@@ -239,6 +275,7 @@
 
 <!-- EDUCATION -->
 <section class="edu section-pad dark" id="edu">
+  <div class="sec-glow"></div>
   <div class="wrap">
     <div class="edu-head">
       <span class="eyebrow reveal" data-i18n="edu.eyebrow">Trayectoria académica</span>
@@ -275,6 +312,7 @@
 
 <!-- INTERESTS -->
 <section class="interests section-pad" id="interests">
+  <div class="sec-glow"></div>
   <div class="wrap">
     <span class="eyebrow reveal" data-i18n="int.eyebrow">Fuera del código</span>
     <h2 class="section-title line-reveal" style="margin-top:18px;"><span data-i18n="int.title">Intereses</span></h2>
@@ -313,6 +351,7 @@
       <a class="clink" href="tel:+542236730539"><span class="dot"></span>+54 223 673-0539</a>
       <a class="clink" href="https://github.com/santibaezagraf" target="_blank" rel="noopener"><span class="dot"></span>GitHub</a>
       <a class="clink" href="https://www.linkedin.com/in/santiago-baeza-graf-1b22a3383/" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+      <a class="clink" href="cv-santiago-baeza-graf.pdf" target="_blank" rel="noopener" download><span class="dot"></span><span data-i18n="contact.cv">Descargar CV</span></a>
     </div>
     <div class="contact-foot">
       <span>Santiago Baeza Graf</span>
@@ -321,6 +360,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <script src="image-slot.js"></script>
 <script src="js/app.js"></script>

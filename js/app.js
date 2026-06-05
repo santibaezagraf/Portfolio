@@ -1,6 +1,17 @@
 /* ============================================================
    Portfolio interactions
    ============================================================ */
+/* Visibility guard: when a hidden document becomes visible, force the hero
+   title to its final state — guards against CSS transitions stuck at t=0 on
+   tabs that loaded while hidden (or rendered by screenshot tools). */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+  document.querySelectorAll('.hero-title .reveal-y').forEach(s => {
+    s.style.opacity = '1';
+    s.style.transform = 'translateY(0) rotate(0)';
+  });
+}, { once: true });
+
 (function () {
   'use strict';
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,7 +51,7 @@
       'p1.f1b': 'Arquitectura BaaS robusta', 'p1.f1s': 'Supabase (PostgreSQL) + Supabase SSR.',
       'p1.f2b': 'Seguridad a nivel de fila (RLS)', 'p1.f2s': 'Privacidad estricta de datos médicos y perfiles.',
       'p1.f3b': 'Estado avanzado y optimización', 'p1.f3s': 'TanStack React Query + Zustand para datos asíncronos y estado global.',
-      'p1.cap1': 'Calendario / agenda de turnos', 'p1.cap2': 'Ficha de paciente', 'p1.cap3': 'Vista mobile',
+      'p1.cap1': 'Calendario de turnos', 'p1.cap2': 'Panel de control con métricas', 'p1.cap3': 'Agenda de pilates — mobile', 'p1.cap4': 'Listado y filtros de turnos',
       'p2.role': 'Gestión de pedidos & analítica',
       'p2.loc': 'Concepción del Uruguay, AR · 07/2025 — presente',
       'p2.desc': 'Sistema web de gestión de pedidos para optimizar la logística de ventas, balances y entregas a domicilio de una heladería. Seguimiento en tiempo real e inteligencia financiera instantánea.',
@@ -48,7 +59,7 @@
       'p2.f2b': 'Analítica financiera avanzada', 'p2.f2s': 'RPCs en PostgreSQL con CTEs para balances dinámicos.',
       'p2.f3b': 'Lógica de negocio en la base', 'p2.f3s': 'Ingresos brutos, flujo de caja neto, costos de envío y gastos operativos.',
       'p2.f4b': 'Arquitectura segura', 'p2.f4s': 'Next.js Server Actions + Zod para validación robusta en servidor.',
-      'p2.cap1': 'Panel de pedidos', 'p2.cap2': 'Balance financiero', 'p2.cap3': 'Detalle de gastos',
+      'p2.cap1': 'Panel de pedidos', 'p2.cap2': 'Balance de ventas', 'p2.cap3': 'Cantidades — mobile', 'p2.cap4': 'Detalle del pedido — mobile',
       'edu.eyebrow': 'Trayectoria académica',
       'edu.title': 'Formación',
       'edu.e1n': 'Ingeniería en Sistemas', 'edu.e1s': 'Cursando 4.º año — todas las materias promocionadas.', 'edu.e1p': 'Universidad Adventista del Plata',
@@ -63,6 +74,15 @@
       'contact.big': 'Hagamos algo <em>juntos</em>',
       'contact.role': 'Desarrollador Full Stack',
       'contact.avail': 'Disponible para nuevos proyectos',
+      'kbd.title': 'Atajos de teclado',
+      'kbd.next': 'Siguiente sección',
+      'kbd.prev': 'Sección anterior',
+      'kbd.top': 'Volver al inicio',
+      'kbd.lang': 'Cambiar idioma',
+      'kbd.motion': 'Activar / desactivar motion',
+      'kbd.close': 'Mostrar / ocultar este panel',
+      'nav.cv': 'CV',
+      'contact.cv': 'Descargar CV',
     },
     en: {
       'nav.about': 'Profile',
@@ -96,7 +116,7 @@
       'p1.f1b': 'Robust BaaS architecture', 'p1.f1s': 'Supabase (PostgreSQL) + Supabase SSR.',
       'p1.f2b': 'Row Level Security (RLS)', 'p1.f2s': 'Strict privacy for medical data and user profiles.',
       'p1.f3b': 'Advanced state & optimization', 'p1.f3s': 'TanStack React Query + Zustand for async data and global state.',
-      'p1.cap1': 'Appointment calendar', 'p1.cap2': 'Patient record', 'p1.cap3': 'Mobile view',
+      'p1.cap1': 'Appointment calendar', 'p1.cap2': 'Dashboard with metrics', 'p1.cap3': 'Pilates schedule — mobile', 'p1.cap4': 'Appointment list & filters',
       'p2.role': 'Order management & analytics',
       'p2.loc': 'Concepción del Uruguay, AR · 07/2025 — present',
       'p2.desc': 'Web order-management system to optimize sales logistics, balances and home delivery for an ice-cream shop. Real-time tracking and instant financial intelligence.',
@@ -104,7 +124,7 @@
       'p2.f2b': 'Advanced financial analytics', 'p2.f2s': 'PostgreSQL RPCs with CTEs for dynamic balances.',
       'p2.f3b': 'Business logic in the database', 'p2.f3s': 'Gross income, net cash flow, shipping costs and operating expenses.',
       'p2.f4b': 'Secure architecture', 'p2.f4s': 'Next.js Server Actions + Zod for robust server-side validation.',
-      'p2.cap1': 'Orders dashboard', 'p2.cap2': 'Financial balance', 'p2.cap3': 'Expense detail',
+      'p2.cap1': 'Orders dashboard', 'p2.cap2': 'Sales balance', 'p2.cap3': 'Quantities — mobile', 'p2.cap4': 'Order detail — mobile',
       'edu.eyebrow': 'Academic path',
       'edu.title': 'Education',
       'edu.e1n': 'Systems Engineering', 'edu.e1s': '4th year in progress — every course passed by promotion.', 'edu.e1p': 'Universidad Adventista del Plata',
@@ -119,6 +139,15 @@
       'contact.big': "Let's build <em>something</em>",
       'contact.role': 'Full Stack Developer',
       'contact.avail': 'Available for new projects',
+      'kbd.title': 'Keyboard shortcuts',
+      'kbd.next': 'Next section',
+      'kbd.prev': 'Previous section',
+      'kbd.top': 'Back to top',
+      'kbd.lang': 'Toggle language',
+      'kbd.motion': 'Toggle motion',
+      'kbd.close': 'Show / hide this panel',
+      'nav.cv': 'CV',
+      'contact.cv': 'Download CV',
     }
   };
 
@@ -153,24 +182,35 @@
   }
 
   /* ---------------- Hero kinetic title ---------------- */
+  // Splits each word into per-character spans. CSS drives the reveal via
+  // `body.loaded .hero-title .reveal-y`. We also force the final state after a
+  // fallback timeout so the title is ALWAYS visible — defensive against paused
+  // timelines (hidden iframes, html-to-image captures, etc.).
   function buildKineticTitle() {
-    document.querySelectorAll('.hero-title .word').forEach((word, wi) => {
+    let globalIdx = 0;
+    document.querySelectorAll('.hero-title .word').forEach((word) => {
       const text = word.textContent;
       word.textContent = '';
-      [...text].forEach((ch, ci) => {
+      [...text].forEach((ch) => {
         const span = document.createElement('span');
         span.className = 'reveal-y';
         span.textContent = ch;
-        span.style.transition = `transform 1s var(--ease) ${0.25 + wi * 0.12 + ci * 0.03}s, opacity .8s ease ${0.25 + wi * 0.12 + ci * 0.03}s`;
+        span.style.setProperty('--ci', globalIdx++);
         word.appendChild(span);
       });
     });
   }
+  // Fallback: force the resolved state once the longest CSS transition would
+  // have completed (delay 0.25 + 17 chars * 0.03s stagger + 1s duration ≈ 1.8s).
+  // If the timeline was paused (document hidden), transitions never finish; this
+  // ensures the title is visible regardless.
   function playKineticTitle() {
-    document.querySelectorAll('.hero-title .reveal-y').forEach(s => {
-      s.style.transform = 'translateY(0) rotate(0)';
-      s.style.opacity = '1';
-    });
+    setTimeout(() => {
+      document.querySelectorAll('.hero-title .reveal-y').forEach(s => {
+        s.style.opacity = '1';
+        s.style.transform = 'translateY(0) rotate(0)';
+      });
+    }, 2200);
   }
 
   /* ---------------- Scroll reveals ---------------- */
@@ -246,6 +286,220 @@
     });
   }
 
+  /* ---------------- Cursor-following section glows ---------------- */
+  function initSectionGlows() {
+    if (prefersReduced) return;
+    const states = [...document.querySelectorAll('.sec-glow')].map(g => {
+      const sec = g.closest('section');
+      return { g, sec, tx: 0, ty: 0, x: 0, y: 0, ta: 0, a: 0, init: false };
+    });
+    if (!states.length) return;
+
+    window.addEventListener('mousemove', (e) => {
+      states.forEach(s => {
+        const r = s.sec.getBoundingClientRect();
+        const inside = e.clientX >= r.left && e.clientX <= r.right &&
+                       e.clientY >= r.top && e.clientY <= r.bottom;
+        if (inside) {
+          s.tx = e.clientX - r.left;
+          s.ty = e.clientY - r.top;
+          if (!s.init) { s.x = s.tx; s.y = s.ty; s.init = true; }
+          s.ta = 0.5;
+        } else {
+          s.ta = 0;
+        }
+      });
+    });
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!animOn) return;
+      states.forEach(s => {
+        s.x += (s.tx - s.x) * 0.12;
+        s.y += (s.ty - s.y) * 0.12;
+        s.a += (s.ta - s.a) * 0.07;
+        s.g.style.transform = `translate(${s.x}px, ${s.y}px) translate(-50%, -50%)`;
+        s.g.style.opacity = s.a.toFixed(3);
+      });
+    })();
+  }
+
+  /* ---------------- Per-project accent + bignum reveal ---------------- */
+  function initProjectAccents() {
+    const projects = [...document.querySelectorAll('.project')];
+    if (!projects.length) return;
+    const projectsSection = document.querySelector('.projects');
+    const projGlow = projectsSection ? projectsSection.querySelector('.sec-glow') : null;
+
+    // detect most-overlapping project on scroll and tint the projects sec-glow accordingly
+    function readAccent(art) {
+      // sage variant has its CSS variable defined; pick it up from computed style
+      const cs = getComputedStyle(art);
+      return cs.getPropertyValue('--proj-accent').trim() || '#d97757';
+    }
+    function rgbaFrom(hex, a) {
+      const m = hex.replace('#','').match(/.{1,2}/g);
+      if (!m || m.length !== 3) return `rgba(217,119,87,${a})`;
+      const [r,g,b] = m.map(h => parseInt(h, 16));
+      return `rgba(${r},${g},${b},${a})`;
+    }
+    function tintGlow() {
+      if (!projGlow) return;
+      const vh = innerHeight;
+      let best = null, bestScore = -Infinity;
+      projects.forEach(p => {
+        const r = p.getBoundingClientRect();
+        const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+        if (visible > bestScore) { bestScore = visible; best = p; }
+      });
+      if (!best || bestScore <= 0) return;
+      const c = readAccent(best);
+      projGlow.style.background = `radial-gradient(circle, ${rgbaFrom(c, 0.5)} 0%, transparent 70%)`;
+    }
+    // tint on scroll (throttled via rAF)
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { tintGlow(); ticking = false; });
+    }, { passive: true });
+    tintGlow();
+
+    // reveal the big numeral when each project enters view
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in-view');
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+    projects.forEach(p => io.observe(p));
+  }
+
+  /* ---------------- Project image parallax ---------------- */
+  // removed — was creating awkward sideways drift between sticky info column
+  // and the image column. Hover-zoom remains in CSS.
+
+  /* ---------------- Persistent vertical watermark ---------------- */
+  function initWatermark() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        document.body.classList.toggle('show-watermark', !e.isIntersecting);
+      });
+    }, { threshold: 0.12 });
+    io.observe(hero);
+  }
+
+  /* ---------------- Keyboard shortcuts ---------------- */
+  function initShortcuts() {
+    const sections = [...document.querySelectorAll('section[id]')];
+    const hint = document.getElementById('kbdHint');
+
+    function currentIndex() {
+      const mid = innerHeight * 0.35;
+      let idx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const r = sections[i].getBoundingClientRect();
+        if (r.top <= mid) idx = i;
+      }
+      return idx;
+    }
+    function goTo(i) {
+      i = Math.max(0, Math.min(sections.length - 1, i));
+      sections[i].scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+    }
+    function toggleHint(force) {
+      if (!hint) return;
+      const open = force != null ? force : !hint.classList.contains('open');
+      hint.classList.toggle('open', open);
+      hint.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    if (hint) {
+      hint.addEventListener('click', (e) => { if (e.target === hint) toggleHint(false); });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      // ignore when typing in inputs / contenteditable
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const k = e.key;
+      if (k === 'Escape' && hint && hint.classList.contains('open')) {
+        toggleHint(false); e.preventDefault(); return;
+      }
+      if (k === '?' || (e.shiftKey && k === '/')) {
+        toggleHint(); e.preventDefault(); return;
+      }
+      if (k === 'j' || k === 'J' || k === 'ArrowDown') {
+        goTo(currentIndex() + 1); e.preventDefault(); return;
+      }
+      if (k === 'k' || k === 'K' || k === 'ArrowUp') {
+        goTo(currentIndex() - 1); e.preventDefault(); return;
+      }
+      if (k === 'g' || k === 'G') {
+        goTo(0); e.preventDefault(); return;
+      }
+      if (k === 'l' || k === 'L') {
+        applyLang(lang === 'es' ? 'en' : 'es'); e.preventDefault(); return;
+      }
+      if (k === 'm' || k === 'M') {
+        setAnim(!animOn, true); e.preventDefault(); return;
+      }
+    });
+  }
+
+  /* ---------------- Ticker (constant speed, no scroll reaction) ---------------- */
+  function initTickerVelocity() {
+    // Intentionally a no-op: ticker uses constant speed defined in CSS (--ticker-dur).
+    return;
+  }
+
+  /* ---------------- Contact handwriting reveal ---------------- */
+  function initContactHandwrite() {
+    const big = document.querySelector('.contact-big');
+    if (!big) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          // tiny delay so the eye catches the contrast against the static type
+          setTimeout(() => big.classList.add('in'), 220);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    io.observe(big);
+  }
+
+  /* ---------------- Contact glow: centered, drawn toward cursor ---------------- */
+  function initContactGlow() {
+    if (prefersReduced) return;
+    const glow = document.querySelector('.contact-glow');
+    const sec = document.getElementById('contact');
+    if (!glow || !sec) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    const PULL = 0.16; // fraction of cursor offset the glow drifts toward
+
+    window.addEventListener('mousemove', (e) => {
+      const r = sec.getBoundingClientRect();
+      // only react while the contact section is on screen
+      if (r.bottom < 0 || r.top > innerHeight) { tx = 0; ty = 0; return; }
+      const cxCenter = r.left + r.width / 2;
+      const cyCenter = r.top + r.height * 0.4;
+      tx = (e.clientX - cxCenter) * PULL;
+      ty = (e.clientY - cyCenter) * PULL;
+    });
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!animOn) { glow.style.setProperty('--cgx', '0px'); glow.style.setProperty('--cgy', '0px'); return; }
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      glow.style.setProperty('--cgx', cx.toFixed(1) + 'px');
+      glow.style.setProperty('--cgy', cy.toFixed(1) + 'px');
+    })();
+  }
+
   /* ---------------- Hero glows follow cursor ---------------- */
   function initParallax() {
     if (prefersReduced) return;
@@ -292,6 +546,8 @@
     const LINK = 140;       // particle-to-particle link distance
     const M_RADIUS = 230;   // cursor influence radius
     const REPEL = 2.4;       // cursor repel strength
+    const SEP = 64;          // min comfortable spacing between particles
+    const SEP_FORCE = 0.9;   // mutual repulsion strength
 
     function resize() {
       dpr = Math.min(devicePixelRatio || 1, 2);
@@ -303,7 +559,7 @@
         x: Math.random() * w, y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.32, vy: (Math.random() - 0.5) * 0.32,
         bvx: 0, bvy: 0,
-        r: Math.random() * 1.8 + 0.7
+        r: Math.random() * 2.1 + 1.1
       }));
     }
     resize();
@@ -340,6 +596,9 @@
         p.y += p.vy + p.bvy;
         // ease the cursor-pushed velocity back to 0
         p.bvx *= 0.9; p.bvy *= 0.9;
+        // cap accumulated velocity so repulsion stays smooth
+        const sp = Math.hypot(p.bvx, p.bvy);
+        if (sp > 2.6) { p.bvx = p.bvx / sp * 2.6; p.bvy = p.bvy / sp * 2.6; }
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
         p.x = Math.max(0, Math.min(w, p.x));
@@ -368,20 +627,27 @@
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r + near * 2.4, 0, Math.PI * 2);
         ctx.fillStyle = near > 0.05
-          ? `rgba(217,119,87,${0.45 + near * 0.5})`
-          : 'rgba(23,19,15,0.34)';
+          ? `rgba(217,119,87,${0.4 + near * 0.4})`
+          : 'rgba(23,19,15,0.28)';
         ctx.fill();
 
-        // particle-to-particle links
+        // particle-to-particle links + mutual repulsion
         for (let j = i + 1; j < parts.length; j++) {
           const q = parts[j];
           const dx = p.x - q.x, dy = p.y - q.y;
-          const d = Math.hypot(dx, dy);
+          const d = Math.hypot(dx, dy) || 0.001;
+          // repel when too close so they never clump
+          if (d < SEP) {
+            const f = (1 - d / SEP) * SEP_FORCE;
+            const ux = dx / d, uy = dy / d;
+            p.bvx += ux * f; p.bvy += uy * f;
+            q.bvx -= ux * f; q.bvy -= uy * f;
+          }
           if (d < LINK) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
             ctx.strokeStyle = `rgba(23,19,15,${(1 - d / LINK) * 0.16})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -416,7 +682,14 @@
     initProgress();
     initCursor();
     initParallax();
+    initSectionGlows();
+    initContactGlow();
     initCanvas();
+    initProjectAccents();
+    initContactHandwrite();
+    initWatermark();
+    initShortcuts();
+    initTickerVelocity();
     // play hero
     document.body.classList.add('loaded');
     setTimeout(playKineticTitle, 120);
